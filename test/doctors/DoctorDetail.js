@@ -6,38 +6,49 @@ describe('Doctor detail page', function() {
     var nightmare;
 
     beforeEach(function() {
-        nightmare = Nightmare();
+        nightmare = Nightmare({ show: true });
     });
     afterEach(function(done) {
         nightmare.end(done);
     })
     const url = 'https://s.ratemds.com/doctor-ratings/dr-truedoctorman-toronto-on-ca'
-
-    describe('Page loads', function () {
-        it('Doctor name should exist', function (done) {
-            nightmare
-                .goto(url)
-                .exists('h1')
-                .then((exists) => {
-                    exists.should.be.true;
-                })
-                .then(() => {
-                    return nightmare.exists('a.blaksdfjlaskdfj')
-                })
-                .then((exists) => {
-                    exists.should.be.false;
-                })
-                .then(() => done());
-        });
-    });
     describe('Doctor name', function () {
         it('should show doctor name', function (done) {
             const expected = 'Dr. Ultrasuper'
-            const selector = 'h1'
             nightmare
                 .goto(url)
                 .evaluate(() => {
                     return document.querySelector('h1').innerText
+                })
+                .then((text) => {
+                    text.should.equal(expected);
+                })
+                .then(() => done());
+        });
+    });
+    describe('Click Specialty Link', function () {
+        it('should be able to go to specialty page', function (done) {
+            const expected = 'The Best Perinatologists in Toronto, ON'
+            nightmare
+                .goto(url)
+                .click('div.search-item-info a')
+                .evaluate(() => {
+                    return document.querySelector('h2').innerText
+                })
+                .then((text) => {
+                    text.should.equal(expected);
+                })
+                .then(() => done());
+        });
+    });
+    describe('Click Gender Link', function () {
+        it('should be able to go gender page', function (done) {
+            const expected = 'The Best Male Perinatologists in Toronto, ON'
+            nightmare
+                .goto(url)
+                .click('a[href="/best-doctors/on/toronto/perinatologist-maternal-fetal-medicine/?gender=m"]')
+                .evaluate(() => {
+                    return document.querySelector('h2').innerText
                 })
                 .then((text) => {
                     text.should.equal(expected);
