@@ -11,6 +11,7 @@
   "dependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
-    "nightmare": "^3.0.1"
+    "nightmare": "^3.0.1",
+    "nightmare-window-manager": "^0.2.2"
   }
 }
