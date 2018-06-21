@@ -10,7 +10,7 @@ describe('Doctor detail page', function() {
   });
   afterEach(function(done) {
     nightmare.end(done);
-  })
+  });
   const urls = ['https://s.ratemds.com/doctor-ratings/dr-truedoctorman-toronto-on-ca']
                 // 'https://s.ratemds.com/doctor-ratings/dr-david-homer-toronto-on-ca']
   const pageData = [{name: 'Dr. Ultrasuper',
@@ -19,7 +19,7 @@ describe('Doctor detail page', function() {
                     gender: 'The Best Male Perinatologists in Toronto, ON',
                     facility: "Dr. Ultrasuper\'s Credentials",
                     address: 'newdoctorplace',
-                    ratings: 'test test test test test test test test testtestestes'},
+                    ratings: 'Just to make sure this doc doesn\'t show up in actual results'},
                     {name: 'Dr. David Homer',
                     phone: '4169280003\n',
                     specialty: 'The Best Chiropractors in Toronto, ON',
